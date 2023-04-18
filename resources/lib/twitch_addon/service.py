@@ -24,6 +24,7 @@ from .addon.player import TwitchPlayer
 from .addon import api, cache
 
 import xbmc
+import debugpy
 
 
 class LiveNotificationsThread(threading.Thread):
@@ -40,6 +41,9 @@ class LiveNotificationsThread(threading.Thread):
 
     def run(self):
         log_utils.log('LiveNotificationsThread: Starting...', log_utils.LOGDEBUG)
+
+        debugpy.listen(5678)
+        #debugpy.wait_for_client() 
 
         monitor = xbmc.Monitor()
         window = kodi.Window(10000)
